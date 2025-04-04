@@ -77,19 +77,15 @@ def generate(client, parameters, progress_callback):
                 for param in subscription['params']:
                     if 'subscription_id' == get_basic_value(param, 'name'):
                         subscription_id = get_basic_value(param, 'value')
-                        HEADERS[5] = get_basic_value(param, 'name')
 
                     if 'ms_customer_id' == get_basic_value(param, 'name'):
                         ms_customer_id = get_basic_value(param, 'value')
-                        HEADERS[6] = get_basic_value(param, 'name')
 
                     if 'csp_order_id' == get_basic_value(param, 'name'):
                         csp_order_id = get_basic_value(param, 'value')
-                        HEADERS[7] = get_basic_value(param, 'name')
 
                     if 'all_subscription_ids' == get_basic_value(param, 'name'):
                         all_subscription_ids = get_basic_value(param, 'value')
-                        HEADERS[8] = get_basic_value(param, 'name')
 
         item_name = ''
         item_period = ''
