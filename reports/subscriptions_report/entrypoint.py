@@ -7,15 +7,39 @@
 from connect.client.rql import R
 from .utils import (get_value, get_basic_value, convert_to_datetime, today_str)
 
-HEADERS = ['Subscription ID', 'Subscription External ID',
-           'Anniversary Date', 'Term Delta', 'Term Period',
-           'Customer ID', 'Customer Name', 'Customer External ID',
-           'Microsoft Subscription ID', 'MS Customer ID', 'Microsoft Order ID', 'Order Subscription IDs', 'Item Name', 'Item Period', 'Item MPN', 'Item Quantity',
-           'Tier 1 ID', 'Tier 1 Name', 'Tier 1 External ID', 'Tier 2 ID',
-           'Tier 2 Name', 'Tier 2 External ID', 'Provider  ID', 'Provider Name',
-           'Hub ID', 'Hub Name', 'Vendor ID', 'Vendor Name',
-           'Marketplace', 'Product ID', 'Product Name', 'Subscription Status',
-           'Transaction Date', 'Connection Type', 'Exported At']
+HEADERS = ['Subscription ID',
+           'Subscription External ID',
+           'Customer ID',
+           'Customer Name',
+           'Customer External ID',
+           'Microsoft Subscription ID',
+           'MS Customer ID',
+           'Microsoft Order ID',
+           'Order Subscription IDs',
+           'Item Name',
+           'Item Period',
+           'Item MPN',
+           'Item Quantity',
+           'Tier 1 ID',
+           'Tier 1 Name',
+           'Tier 1 External ID',
+           'Tier 2 ID',
+           'Tier 2 Name',
+           'Tier 2 External ID',
+           'Provider  ID',
+           'Provider Name',
+           'Hub ID',
+           'Hub Name',
+           'Vendor ID',
+           'Vendor Name',
+           'Marketplace',
+           'Product ID',
+           'Product Name',
+           'Subscription Status',
+           'Transaction Date',
+           'Connection Type',
+           'Exported At'
+           ]
 
 
 def generate(client, parameters, progress_callback):
@@ -53,19 +77,19 @@ def generate(client, parameters, progress_callback):
                 for param in subscription['params']:
                     if 'subscription_id' == get_basic_value(param, 'name'):
                         subscription_id = get_basic_value(param, 'value')
-                        HEADERS[16] = get_basic_value(param, 'name')
+                        HEADERS[5] = get_basic_value(param, 'name')
 
                     if 'ms_customer_id' == get_basic_value(param, 'name'):
                         ms_customer_id = get_basic_value(param, 'value')
-                        HEADERS[17] = get_basic_value(param, 'name')
+                        HEADERS[6] = get_basic_value(param, 'name')
 
                     if 'csp_order_id' == get_basic_value(param, 'name'):
                         csp_order_id = get_basic_value(param, 'value')
-                        HEADERS[18] = get_basic_value(param, 'name')
+                        HEADERS[7] = get_basic_value(param, 'name')
 
                     if 'all_subscription_ids' == get_basic_value(param, 'name'):
                         all_subscription_ids = get_basic_value(param, 'value')
-                        HEADERS[19] = get_basic_value(param, 'name')
+                        HEADERS[8] = get_basic_value(param, 'name')
 
         item_name = ''
         item_period = ''
