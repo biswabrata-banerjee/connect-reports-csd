@@ -1,11 +1,11 @@
 {
-  "name": "Vendor Subscriptions Report",
+  "name": "CTERA Subscriptions Report with Portal Name",
   "readme_file": "README.md",
   "version": "0.1.0",
   "language": "python",
   "reports": [
     {
-      "name": "Subscriptions Report per Creation Date, Product, Marketplace and Environment",
+      "name": "CTERA Subscriptions Report per Creation Date, Product, Marketplace and Environment",
       "readme_file": "reports/subscriptions_report/README.md",
       "template": "reports/subscriptions_report/templates/xlsx/template.xlsx",
       "start_row": 1,
