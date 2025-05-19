@@ -12,10 +12,7 @@ HEADERS = ['Subscription ID',
            'Customer ID',
            'Customer Name',
            'Customer External ID',
-           'Microsoft Subscription ID',
-           'MS Customer ID',
-           'Microsoft Order ID',
-           'Order Subscription IDs',
+           'Portal Name',
            'Item Name',
            'Item Period',
            'Item MPN',
@@ -66,26 +63,14 @@ def generate(client, parameters, progress_callback):
     total = subscriptions.count() + 1
 
     for subscription in subscriptions:
-        subscription_id = ''
-        ms_customer_id = ''
-        csp_order_id = ''
-        all_subscription_ids = ''
+        portal_name = ''
 
         # get subscription parameters values
         if 'parameter_id' in parameters:
             for param_requested in parameters['parameter_id'].split(sep="|"):
                 for param in subscription['params']:
-                    if 'subscription_id' == get_basic_value(param, 'name'):
-                        subscription_id = get_basic_value(param, 'value')
-
-                    if 'ms_customer_id' == get_basic_value(param, 'name'):
-                        ms_customer_id = get_basic_value(param, 'value')
-
-                    if 'csp_order_id' == get_basic_value(param, 'name'):
-                        csp_order_id = get_basic_value(param, 'value')
-
-                    if 'all_subscription_ids' == get_basic_value(param, 'name'):
-                        all_subscription_ids = get_basic_value(param, 'value')
+                    if 'portalName' == get_basic_value(param, 'name'):
+                        portal_name = get_basic_value(param, 'value')
 
         item_name = ''
         item_period = ''
@@ -114,10 +99,7 @@ def generate(client, parameters, progress_callback):
             get_value(subscription['tiers'], 'customer', 'id'),  # Customer ID
             get_value(subscription['tiers'], 'customer', 'name'),  # Customer Name
             get_value(subscription['tiers'], 'customer', 'external_id'),  # Customer External ID
-            subscription_id,
-            ms_customer_id,
-            csp_order_id,
-            all_subscription_ids,
+            portal_name,
             item_name,
             item_period,
             item_mpn,
