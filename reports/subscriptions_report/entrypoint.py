@@ -12,10 +12,13 @@ HEADERS = ['Subscription ID',
            'Customer ID',
            'Customer Name',
            'Customer External ID',
-           'Microsoft Subscription ID',
            'MS Customer ID',
-           'Microsoft Order ID',
-           'Order Subscription IDs',
+           'MS Plan Subscription ID',
+           'MS Entitlement ID',
+           'MS Subscription ID'
+           'Tier1 MPN',
+           'Indirect Reseller Domain',
+           'Tier1 GUID'
            'Item Name',
            'Item Period',
            'Item MPN',
@@ -66,26 +69,38 @@ def generate(client, parameters, progress_callback):
     total = subscriptions.count() + 1
 
     for subscription in subscriptions:
-        subscription_id = ''
         ms_customer_id = ''
-        csp_order_id = ''
-        all_subscription_ids = ''
+        ms_plan_subscription_id = ''
+        ms_entitlement_id = ''
+        ms_subscription_id = ''
+        tier1_mpn = ''
+        indirect_reseller_domain = ''
+        tier1_guid = ''
 
         # get subscription parameters values
         if 'parameter_id' in parameters:
             for param_requested in parameters['parameter_id'].split(sep="|"):
                 for param in subscription['params']:
-                    if 'subscription_id' == get_basic_value(param, 'name'):
-                        subscription_id = get_basic_value(param, 'value')
+                    if 'microsoft_subscription_id' == get_basic_value(param, 'name'):
+                        ms_subscription_id = get_basic_value(param, 'value')
 
-                    if 'ms_customer_id' == get_basic_value(param, 'name'):
+                    if 'customer_id' == get_basic_value(param, 'name'):
                         ms_customer_id = get_basic_value(param, 'value')
 
-                    if 'csp_order_id' == get_basic_value(param, 'name'):
-                        csp_order_id = get_basic_value(param, 'value')
+                    if 'microsoft_plan_subscription_id' == get_basic_value(param, 'name'):
+                        ms_plan_subscription_id = get_basic_value(param, 'value')
 
-                    if 'all_subscription_ids' == get_basic_value(param, 'name'):
-                        all_subscription_ids = get_basic_value(param, 'value')
+                    if 'microsoft_entitlement_id' == get_basic_value(param, 'name'):
+                        ms_entitlement_id = get_basic_value(param, 'value')
+
+                    if 'tier1_mpn' == get_basic_value(param, 'name'):
+                        tier1_mpn = get_basic_value(param, 'value')
+
+                    if 'indirect_reseller_domain' == get_basic_value(param, 'name'):
+                        indirect_reseller_domain = get_basic_value(param, 'value')
+
+                    if 'microsoft_entitlement_id' == get_basic_value(param, 'name'):
+                        tier1_guid = get_basic_value(param, 'value')
 
         item_name = ''
         item_period = ''
@@ -114,10 +129,13 @@ def generate(client, parameters, progress_callback):
             get_value(subscription['tiers'], 'customer', 'id'),  # Customer ID
             get_value(subscription['tiers'], 'customer', 'name'),  # Customer Name
             get_value(subscription['tiers'], 'customer', 'external_id'),  # Customer External ID
-            subscription_id,
             ms_customer_id,
-            csp_order_id,
-            all_subscription_ids,
+            ms_plan_subscription_id,
+            ms_entitlement_id,
+            ms_subscription_id,
+            tier1_mpn,
+            indirect_reseller_domain,
+            tier1_guid,
             item_name,
             item_period,
             item_mpn,

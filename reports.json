@@ -1,11 +1,11 @@
 {
-  "name": "CTERA Subscriptions Report with Portal Name",
+  "name": "MS NCE Azure Subscriptions Report",
   "readme_file": "README.md",
   "version": "0.1.0",
   "language": "python",
   "reports": [
     {
-      "name": "CTERA Subscriptions Report per Creation Date, Product, Marketplace and Environment",
+      "name": "Subscriptions Report per Creation Date, Product, Marketplace and Environment",
       "readme_file": "reports/subscriptions_report/README.md",
       "template": "reports/subscriptions_report/templates/xlsx/template.xlsx",
       "start_row": 1,
