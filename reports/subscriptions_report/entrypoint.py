@@ -15,10 +15,10 @@ HEADERS = ['Subscription ID',
            'MS Customer ID',
            'MS Plan Subscription ID',
            'MS Entitlement ID',
-           'MS Subscription ID'
+           'MS Subscription ID',
            'Tier1 MPN',
            'Indirect Reseller Domain',
-           'Tier1 GUID'
+           'Tier1 GUID',
            'Item Name',
            'Item Period',
            'Item MPN',
