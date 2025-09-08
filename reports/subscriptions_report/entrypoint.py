@@ -16,8 +16,11 @@ HEADERS = ['Subscription ID',
            'MS Plan Subscription ID',
            'MS Entitlement ID',
            'MS Subscription ID',
+           'Tenant ID',
+           'Container ID',
            'Tier1 MPN',
            'Indirect Reseller Domain',
+           'Indirect Reseller GUID',
            'Tier1 GUID',
            'Item Name',
            'Item Period',
@@ -70,11 +73,14 @@ def generate(client, parameters, progress_callback):
 
     for subscription in subscriptions:
         ms_customer_id = ''
+        tenant_id = ''
         ms_plan_subscription_id = ''
         ms_entitlement_id = ''
         ms_subscription_id = ''
+        container_id = ''
         tier1_mpn = ''
         indirect_reseller_domain = ''
+        indirect_reseller_guid = ''
         tier1_guid = ''
 
         # get subscription parameters values
@@ -87,6 +93,9 @@ def generate(client, parameters, progress_callback):
                     if 'customer_id' == get_basic_value(param, 'name'):
                         ms_customer_id = get_basic_value(param, 'value')
 
+                    if 'customer_id' == get_basic_value(param, 'name'):
+                        tenant_id = get_basic_value(param, 'value')
+
                     if 'microsoft_plan_subscription_id' == get_basic_value(param, 'name'):
                         ms_plan_subscription_id = get_basic_value(param, 'value')
 
@@ -98,6 +107,12 @@ def generate(client, parameters, progress_callback):
 
                     if 'indirect_reseller_domain' == get_basic_value(param, 'name'):
                         indirect_reseller_domain = get_basic_value(param, 'value')
+
+                    if 'microsoft_entitlement_id' == get_basic_value(param, 'name'):
+                        container_id = get_basic_value(param, 'value')
+
+                    if 'tier1_guid' == get_basic_value(param, 'name'):
+                        indirect_reseller_guid = get_basic_value(param, 'value')
 
                     if 'microsoft_entitlement_id' == get_basic_value(param, 'name'):
                         tier1_guid = get_basic_value(param, 'value')
@@ -133,8 +148,11 @@ def generate(client, parameters, progress_callback):
             ms_plan_subscription_id,
             ms_entitlement_id,
             ms_subscription_id,
+            tenant_id,
+            container_id,
             tier1_mpn,
             indirect_reseller_domain,
+            indirect_reseller_guid,
             tier1_guid,
             item_name,
             item_period,
