@@ -16,6 +16,9 @@ HEADERS = ['Subscription ID',
            'MS Customer ID',
            'Microsoft Order ID',
            'Order Subscription IDs',
+           'Tier1 MPN',
+           'Indirect Reseller Domain',
+           'Tier1 GUID',
            'Item Name',
            'Item Period',
            'Item MPN',
@@ -70,6 +73,9 @@ def generate(client, parameters, progress_callback):
         ms_customer_id = ''
         csp_order_id = ''
         all_subscription_ids = ''
+        tier1_mpn = ''
+        indirect_reseller_domain = ''
+        tier1_guid = ''
 
         # get subscription parameters values
         if 'parameter_id' in parameters:
@@ -86,6 +92,15 @@ def generate(client, parameters, progress_callback):
 
                     if 'all_subscription_ids' == get_basic_value(param, 'name'):
                         all_subscription_ids = get_basic_value(param, 'value')
+
+                    if 'tier1_mpn' == get_basic_value(param, 'name'):
+                        tier1_mpn = get_basic_value(param, 'value')
+
+                    if 'indirect_reseller_domain' == get_basic_value(param, 'name'):
+                        indirect_reseller_domain = get_basic_value(param, 'value')
+
+                    if 'microsoft_entitlement_id' == get_basic_value(param, 'name'):
+                        tier1_guid = get_basic_value(param, 'value')
 
         item_name = ''
         item_period = ''
@@ -118,6 +133,9 @@ def generate(client, parameters, progress_callback):
             ms_customer_id,
             csp_order_id,
             all_subscription_ids,
+            tier1_mpn,
+            indirect_reseller_domain,
+            tier1_guid,
             item_name,
             item_period,
             item_mpn,
